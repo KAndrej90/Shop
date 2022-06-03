@@ -20,11 +20,7 @@ export const SignUpForm = () => {
   return (
     <div>
       <h1>SignUpForm</h1>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault;
-        }}
-      >
+      <form onSubmit={(e) => {}}>
         <label>Name</label>
         <input
           type="text"
