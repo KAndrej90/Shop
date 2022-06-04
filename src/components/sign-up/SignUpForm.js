@@ -1,4 +1,6 @@
+import { async } from "@firebase/util";
 import React, { useState } from "react";
+import { createAuthUserWithEmailAndPassword } from "../../utils/firebase/firebase";
 
 export const SignUpForm = () => {
   const defaultForm = {
@@ -9,7 +11,6 @@ export const SignUpForm = () => {
   };
 
   const [formInfo, setformInfo] = useState({ defaultForm });
-  console.log(formInfo);
 
   const { displayName, email, password, confirmPassword } = formInfo;
   const handleChange = (e) => {
@@ -17,10 +18,28 @@ export const SignUpForm = () => {
     setformInfo({ ...formInfo, [name]: value });
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log("tutu");
+    if (password !== confirmPassword) {
+      alert("password dont match");
+      return;
+    }
+    try {
+      const response = await createAuthUserWithEmailAndPassword(
+        email,
+        password
+      );
+      console.log(response);
+    } catch (error) {
+      console.log("user creation encountered an error", error);
+    }
+  };
+
   return (
     <div>
       <h1>SignUpForm</h1>
-      <form onSubmit={(e) => {}}>
+      <form onSubmit={handleSubmit}>
         <label>Name</label>
         <input
           type="text"
@@ -53,7 +72,7 @@ export const SignUpForm = () => {
           onChange={handleChange}
           value={confirmPassword}
         ></input>
-        <button type="submit">Sign in</button>
+        <button type="submit">Sign up</button>
       </form>
     </div>
   );
