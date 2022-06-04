@@ -1,6 +1,6 @@
-import { async } from "@firebase/util";
 import React, { useState } from "react";
 import { createAuthUserWithEmailAndPassword } from "../../utils/firebase/firebase";
+import Button from "../button/Button";
 
 export const SignUpForm = () => {
   const defaultForm = {
@@ -72,7 +72,7 @@ export const SignUpForm = () => {
           onChange={handleChange}
           value={confirmPassword}
         ></input>
-        <button type="submit">Sign up</button>
+        <Button type="submit">Sign up</Button>
       </form>
     </div>
   );

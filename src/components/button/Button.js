@@ -1,8 +1,9 @@
 import React from "react";
+import "../button/button.scss";
 
 const BUTTON_TYPE_CLASSES = {
   google: "google-sign-in",
-  invertde: "inverted",
+  inverted: "inverted",
 };
 
 const Button = ({ children, buttonType, ...otherProps }) => {
